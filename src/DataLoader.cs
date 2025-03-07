@@ -9,8 +9,10 @@ public class DataLoader
         _mlContext = mlContext;
     }
 
+    // Carga los datos de compras y detalles de compras, los procesa y los convierte en un IDataView para el entrenamiento.
     public IDataView LoadData(string purchasesPath, string purchaseDetailsPath)
     {
+        // Lee las compras y crea un diccionario de PurchaseId -> UserId.
         var purchases = File.ReadAllLines(purchasesPath).Skip(1)
             .Select(line => line.Split(','))
             .ToDictionary(parts => int.Parse(parts[0]), parts => int.Parse(parts[1]));
@@ -40,6 +42,7 @@ public class DataLoader
         return _mlContext.Data.LoadFromEnumerable(trainingData);
     }
 
+    //Carga los nombres de los productos y los mapea a IDs únicos
     public Dictionary<int, string> LoadProducts(string purchaseDetailsPath)
     {
         var products = File.ReadAllLines(purchaseDetailsPath).Skip(1)

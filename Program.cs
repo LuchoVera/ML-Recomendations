@@ -5,6 +5,6 @@
     static void Main(string[] args)
     {
         RecommendationPrinter recommendationPrinter= new RecommendationPrinter();
-        recommendationPrinter.GenerateRecomendations(23, PurchasesPath, PurchaseDetailsPath);
+        recommendationPrinter.GenerateRecomendations(3, PurchasesPath, PurchaseDetailsPath);
     }
 }
